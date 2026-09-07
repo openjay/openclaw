@@ -14,7 +14,7 @@ It does not define which tools exist; OpenClaw provides built-in tools internall
 
 ### imsg
 
-- Send an iMessage/SMS: describe who/what, confirm before sending.
+- Send an iMessage/SMS: identify recipient/content and send only within existing concrete authorization; clarify missing scope.
 - Prefer short messages; avoid sending secrets.
 
 ### sag

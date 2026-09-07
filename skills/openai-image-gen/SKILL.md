@@ -23,70 +23,25 @@ metadata:
   }
 ---
 
-# OpenAI Image Gen
+# OpenAI image generation
 
-Generate a handful of “random but structured” prompts and render them via the OpenAI Images API.
+Use the bundled scripts/gen.py for the requested image generation, with an
+explicit prompt, count and output directory. The source script's default count is
+eight and omitted prompts use a random sampler; do not invoke those defaults for
+a one-image or specific-content request. Existing OPENAI_API_KEY handling stays
+with the configured secret resolver, never printed or placed in prompts.
 
-## Run
+Inspect script help and the version-specific primary API documentation for the
+requested model's supported size/quality/background/output-format/style. Preserve
+the user's model choice; source mappings are not proof every historical model is
+currently available. Do not silently substitute a model or enlarge a paid batch.
 
-Note: Image generation can take longer than common exec timeouts (for example 30 seconds).
-When invoking this skill via OpenClaw’s exec tool, set a higher timeout to avoid premature termination/retries (e.g., exec timeout=300).
+Use a sufficient bounded timeout and reconcile existing outputs after uncertainty
+before retrying a possibly billable request. The script records images,
+prompts.json and index.html; use its returned actual directory, not a broad glob
+that might open a different run. Verify the requested count, mapping and rendered
+images where tools permit before delivery. Report any uninspected quality.
 
-```bash
-python3 {baseDir}/scripts/gen.py
-open ~/Projects/tmp/openai-image-gen-*/index.html  # if ~/Projects/tmp exists; else ./tmp/...
-```
-
-Useful flags:
-
-```bash
-# GPT image models with various options
-python3 {baseDir}/scripts/gen.py --count 16 --model gpt-image-1
-python3 {baseDir}/scripts/gen.py --prompt "ultra-detailed studio photo of a lobster astronaut" --count 4
-python3 {baseDir}/scripts/gen.py --size 1536x1024 --quality high --out-dir ./out/images
-python3 {baseDir}/scripts/gen.py --model gpt-image-1.5 --background transparent --output-format webp
-
-# DALL-E 3 (note: count is automatically limited to 1)
-python3 {baseDir}/scripts/gen.py --model dall-e-3 --quality hd --size 1792x1024 --style vivid
-python3 {baseDir}/scripts/gen.py --model dall-e-3 --style natural --prompt "serene mountain landscape"
-
-# DALL-E 2
-python3 {baseDir}/scripts/gen.py --model dall-e-2 --size 512x512 --count 4
-```
-
-## Model-Specific Parameters
-
-Different models support different parameter values. The script automatically selects appropriate defaults based on the model.
-
-### Size
-
-- **GPT image models** (`gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`): `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto`
-  - Default: `1024x1024`
-- **dall-e-3**: `1024x1024`, `1792x1024`, or `1024x1792`
-  - Default: `1024x1024`
-- **dall-e-2**: `256x256`, `512x512`, or `1024x1024`
-  - Default: `1024x1024`
-
-### Quality
-
-- **GPT image models**: `auto`, `high`, `medium`, or `low`
-  - Default: `high`
-- **dall-e-3**: `hd` or `standard`
-  - Default: `standard`
-- **dall-e-2**: `standard` only
-  - Default: `standard`
-
-### Other Notable Differences
-
-- **dall-e-3** only supports generating 1 image at a time (`n=1`). The script automatically limits count to 1 when using this model.
-- **GPT image models** support additional parameters:
-  - `--background`: `transparent`, `opaque`, or `auto` (default)
-  - `--output-format`: `png` (default), `jpeg`, or `webp`
-  - Note: `stream` and `moderation` are available via API but not yet implemented in this script
-- **dall-e-3** has a `--style` parameter: `vivid` (hyper-real, dramatic) or `natural` (more natural looking)
-
-## Output
-
-- `*.png`, `*.jpeg`, or `*.webp` images (output format depends on model + `--output-format`)
-- `prompts.json` (prompt → file mapping)
-- `index.html` (thumbnail gallery)
+Generating files is not publication or permission to upload private reference
+assets to another provider. No SDK upgrade, new credentials or changed runtime
+settings as an implicit prerequisite. Do not claim success from an empty gallery.

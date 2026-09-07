@@ -100,6 +100,16 @@ package-lock.json
 .claude/
 .agents/
 .agents
+# Publish only the reviewed on-demand instruction references. Other agent state stays private.
+!.agents/
+.agents/*
+!.agents/reference/
+.agents/reference/*
+!.agents/reference/development.md
+!.agents/reference/documentation.md
+!.agents/reference/github-workflow.md
+!.agents/reference/platform-operations.md
+!.agents/reference/release.md
 .agent/
 skills-lock.json
 

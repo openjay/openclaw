@@ -47,4 +47,4 @@ Common tasks
 Notes
 
 - API is unofficial and rate-limited; avoid repeated logins.
-- Confirm before changing temperature or alarms.
+- Verify the target and requested temperature/alarm change against existing authorization; clarify only missing material details.

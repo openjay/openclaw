@@ -28,7 +28,7 @@ metadata:
 
 Get per-model usage cost from CodexBar's local cost logs. Supports "current model" (most recent daily entry) or "all models" summaries for Codex or Claude.
 
-TODO: add Linux CLI support guidance once CodexBar CLI install path is documented for Linux.
+This package targets the macOS loader metadata; Linux support is not established here.
 
 ## Quick start
 
@@ -41,10 +41,10 @@ python {baseDir}/scripts/model_usage.py --provider codex --mode all
 python {baseDir}/scripts/model_usage.py --provider claude --mode all --format json --pretty
 ```
 
-## Current model logic
+## Most-recent cost-row heuristic
 
 - Uses the most recent daily row with `modelBreakdowns`.
-- Picks the model with the highest cost in that row.
+- Picks the model with the highest cost in that row. This is not evidence of the model currently serving a session.
 - Falls back to the last entry in `modelsUsed` when breakdowns are missing.
 - Override with `--model <name>` when you need a specific model.
 

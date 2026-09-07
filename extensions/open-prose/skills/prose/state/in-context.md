@@ -12,6 +12,8 @@ see-also:
   - ../primitives/session.md: Session context and compaction guidelines
 ---
 
+> Execution scope: read [runtime boundaries](../guidance/runtime-boundaries.md) before applying this guide. Language semantics do not grant host authority or prove execution.
+
 # In-Context State Management
 
 This document describes how the OpenProse VM tracks execution state using **structured narration** in the conversation history. This is one of two state management approaches (the other being file-based state in `filesystem.md`).

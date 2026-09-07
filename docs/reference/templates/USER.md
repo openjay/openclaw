@@ -6,7 +6,7 @@ read_when:
 
 # USER.md - About Your Human
 
-_Learn about the person you're helping. Update this as you go._
+_Record only user-provided context they authorize retaining. Keep it private and relevant; do not infer sensitive traits or collect a dossier._
 
 - **Name:**
 - **What to call them:**

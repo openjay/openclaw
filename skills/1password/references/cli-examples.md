@@ -1,29 +1,18 @@
-# op CLI examples (from op help)
+# op CLI operations
 
-## Sign in
+Use installed op help for exact flags. Keep secret references out of output where
+their names reveal sensitive context. These examples use symbolic identifiers,
+not live accounts or secrets.
 
-- `op signin`
-- `op signin --account <shorthand|signin-address|account-id|user-id>`
+- Status: op whoami; use --account/OP_ACCOUNT for the intended account.
+- Sign-in: op signin through the approved app/session flow when setup is authorized.
+- Process injection: op run with the approved executable and reference-based
+  environment; the process must consume values without printing them.
+- Template injection: op inject -i TEMPLATE -o APPROVED_OUTPUT only when storing
+  the rendered secret file is required and authorized.
+- Reading an item: target the exact approved op:// reference through the protected
+  consumer. Do not issue a plaintext read into tool/chat output as a smoke test.
 
-## Read
-
-- `op read op://app-prod/db/password`
-- `op read "op://app-prod/db/one-time password?attribute=otp"`
-- `op read "op://app-prod/ssh key/private key?ssh-format=openssh"`
-- `op read --out-file ./key.pem op://app-prod/server/ssh/key.pem`
-
-## Run
-
-- `export DB_PASSWORD="op://app-prod/db/password"`
-- `op run --no-masking -- printenv DB_PASSWORD`
-- `op run --env-file="./.env" -- printenv DB_PASSWORD`
-
-## Inject
-
-- `echo "db_password: {{ op://app-prod/db/password }}" | op inject`
-- `op inject -i config.yml.tpl -o config.yml`
-
-## Whoami / accounts
-
-- `op whoami`
-- `op account list`
+Never use op run --no-masking -- printenv or capture a tmux pane containing a
+secret. Listing vaults/accounts or exporting private keys is not a default
+verification step for an unrelated operation.

@@ -17,7 +17,7 @@ backend.port = 993
 backend.encryption.type = "tls"
 backend.login = "user@example.com"
 backend.auth.type = "password"
-backend.auth.raw = "your-password"
+backend.auth.cmd = "pass show email/imap"
 
 # SMTP backend for sending emails
 message.send.backend.type = "smtp"
@@ -26,16 +26,16 @@ message.send.backend.port = 587
 message.send.backend.encryption.type = "start-tls"
 message.send.backend.login = "user@example.com"
 message.send.backend.auth.type = "password"
-message.send.backend.auth.raw = "your-password"
+message.send.backend.auth.cmd = "pass show email/smtp"
 ```
 
 ## Password Options
 
-### Raw password (testing only, not recommended)
+### Secret handling
 
-```toml
-backend.auth.raw = "your-password"
-```
+Use the configured protected command/keyring mechanism. Do not place real passwords
+in this document, shell history, repository configuration or model output. Setup
+is a separate authorized operation; verify provider requirements for the account.
 
 ### Password from command (recommended)
 
@@ -77,7 +77,7 @@ message.send.backend.auth.type = "password"
 message.send.backend.auth.cmd = "pass show google/app-password"
 ```
 
-**Note:** Gmail requires an App Password if 2FA is enabled.
+**Note:** Verify the account/provider’s supported OAuth or app-password policy; 2FA alone does not establish app-password availability.
 
 ## iCloud Configuration
 

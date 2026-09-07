@@ -13,7 +13,7 @@ Use `mode=file` when you need a rendered file artifact. Set `fileFormat=png` (de
 
 For large or high-fidelity files, use `fileQuality` (`standard`|`hq`|`print`) and optionally override `fileScale`/`fileMaxWidth`.
 
-When you need to deliver the rendered file to a user or channel, do not rely on the raw tool-result renderer. Instead, call the `message` tool and pass `details.filePath` through `path` or `filePath`.
+Return the artifact through the current task surface when available. Send it through message only when delivery to that exact recipient/channel is authorized, passing details.filePath via the tool-supported path field. Creating a diff does not authorize a new outbound message.
 
 Use `mode=both` when you want both the gateway viewer URL and the rendered artifact.
 

@@ -62,3 +62,5 @@ Notes
 - Config folder: `~/.config/spotify-player` (e.g., `app.toml`).
 - For Spotify Connect integration, set a user `client_id` in config.
 - TUI shortcuts are available via `?` in the app.
+
+Use an already configured account for playback/search. Browser-cookie import, account setup and changing persistent defaults need their own explicit scope; do not inspect cookie contents.

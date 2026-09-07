@@ -12,6 +12,8 @@ see-also:
   - ../primitives/session.md: Session context and compaction guidelines
 ---
 
+> Execution scope: read [runtime boundaries](../guidance/runtime-boundaries.md) before applying this guide. Language semantics do not grant host authority or prove execution.
+
 # File-System State Management
 
 This document describes how the OpenProse VM tracks execution state using **files in the `.prose/` directory**. This is one of two state management approaches (the other being in-context state in `in-context.md`).
@@ -88,7 +90,7 @@ If a program exceeds 999 segments, extend to 4 digits: `captain-1000.md`.
 Simple key=value configuration file:
 
 ```env
-OPENPROSE_TELEMETRY=enabled
+OPENPROSE_TELEMETRY=disabled
 USER_ID=user-a7b3c9d4e5f6
 SESSION_ID=sess-1704326400000-x9y8z7
 ```

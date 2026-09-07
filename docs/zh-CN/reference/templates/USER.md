@@ -11,9 +11,11 @@ x-i18n:
   workflow: 15
 ---
 
+<!-- Manually maintained candidate; x-i18n records the prior generated baseline, not this revision. -->
+
 # USER.md - 关于你的用户
 
-_了解你正在帮助的人。随时更新此文件。_
+_仅记录用户提供并授权保留的相关背景，保护隐私；不推断敏感特征或建立额外档案。_
 
 - **姓名：**
 - **称呼方式：**

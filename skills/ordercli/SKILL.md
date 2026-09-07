@@ -76,3 +76,5 @@ Notes
 
 - Use `--config /tmp/ordercli.json` for testing.
 - Confirm before any reorder or cart-changing action.
+
+Checking orders does not authorize reorder/cart/address changes or browser-cookie/session import. Resolve the exact account/order and existing action authorization; do not capture unrelated browser credentials to repair login.

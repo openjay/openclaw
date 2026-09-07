@@ -195,3 +195,5 @@ Presence (often gated):
 - Short, conversational, low ceremony.
 - No markdown tables.
 - Mention users as `<@USER_ID>`.
+
+Action gating controls tool availability, not task authorization. Reads do not authorize posting, reactions, presence, role/channel changes or thread creation; preserve the explicitly requested scope.

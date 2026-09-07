@@ -13,6 +13,8 @@ see-also:
   - ../primitives/session.md: Session context and compaction guidelines
 ---
 
+> Execution scope: read [runtime boundaries](../guidance/runtime-boundaries.md) before applying this guide. Language semantics do not grant host authority or prove execution.
+
 # SQLite State Management (Experimental)
 
 This document describes how the OpenProse VM tracks execution state using a **SQLite database**. This is an experimental alternative to file-based state (`filesystem.md`) and in-context state (`in-context.md`).

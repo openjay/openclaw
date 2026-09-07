@@ -129,3 +129,5 @@ If the user is vague ("text my mom"), ask for the recipient handle or chat guid 
 - React with a tapback to acknowledge a request.
 - Reply in-thread when a user references a specific message.
 - Send a file attachment with a short caption.
+
+Use send/react/edit/unsend or participant changes only within explicit action scope. Do not react or send a courtesy message merely because an example suggests it. Keep a read request separate from group/account configuration.

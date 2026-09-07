@@ -12,6 +12,8 @@ x-i18n:
   workflow: 15
 ---
 
+<!-- Manually maintained candidate; x-i18n records the prior generated baseline, not this revision. -->
+
 # TOOLS.md - 用户工具备注（可编辑）
 
 此文件用于记录*你*关于外部工具和约定的备注。
@@ -21,7 +23,7 @@ x-i18n:
 
 ### imsg
 
-- 发送 iMessage/SMS：描述收件人/内容，发送前确认。
+- 发送 iMessage/SMS：明确收件人和内容，在已有具体授权内发送；缺少必要范围时再澄清。
 - 尽量发送简短消息；避免发送密钥。
 
 ### sag

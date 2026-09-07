@@ -194,6 +194,6 @@ himalaya message write \
 ## Tips
 
 - The editor opens with a template; fill in headers and body.
-- Save and exit the editor to send; exit without saving to cancel.
+- Editor completion may send the message in the installed workflow. Verify the mode and exact authorization before leaving the editor; use a local file for draft-only work.
 - MML parts are compiled to proper MIME when sending.
 - Use `himalaya message export --full` to inspect the raw MIME structure of received emails.

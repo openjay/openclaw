@@ -43,3 +43,5 @@ Notes:
 - Telnyx config: `provider: "telnyx"` + `telnyx.apiKey/connectionId` + `fromNumber`.
 - Plivo config: `provider: "plivo"` + `plivo.authId/authToken` + `fromNumber`.
 - Dev fallback: `provider: "mock"` (no network).
+
+A configured voice-call tool does not authorize initiating calls. Match the exact recipient/message and continuation/end action to the user request. Plugin enablement, provider setup and credentials are separate operations.

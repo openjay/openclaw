@@ -105,3 +105,5 @@ timeout = "5s"
 - Note IDs are Bear's internal identifiers (visible in note info or via callbacks)
 - Use `--enable-callback` when you need to read data back from Bear
 - Some operations require a valid token (add-text, tags, open-note --selected)
+
+Resolve account/setup only within explicit scope. Do not echo real Bear tokens into shell history or tool output; use the protected token file/config mechanism. --print-url and --dry-run may expose token-bearing callback URLs, so redact before reporting.

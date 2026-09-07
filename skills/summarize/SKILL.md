@@ -51,7 +51,7 @@ Best-effort transcript (URLs only):
 summarize "https://youtu.be/dQw4w9WgXcQ" --youtube auto --extract-only
 ```
 
-If the user asked for a transcript but it’s huge, return a tight summary first, then ask which section/time range to expand.
+If the requested transcript is large, preserve it in a scoped artifact or provide it in manageable parts; do not substitute a summary for the requested transcript.
 
 ## Model + keys
 

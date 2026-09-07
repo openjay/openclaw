@@ -1,73 +1,12 @@
 ---
-description: Land a PR (merge with proper workflow)
+description: Prepare and land an explicitly authorized PR after review and exact-head checks
 ---
 
-Input
+Target: PR $1 (number or URL), or the unambiguous PR already named in the conversation.
 
-- PR: $1 <number|url>
-  - If missing: use the most recent PR mentioned in the conversation.
-  - If ambiguous: ask.
-
-Do (end-to-end)
-Goal: PR must end in GitHub state = MERGED (never CLOSED). Prefer `gh pr merge --squash`; use `--rebase` only when preserving commit history is required.
-
-1. Assign PR to self:
-   - `gh pr edit <PR> --add-assignee @me`
-2. Repo clean: `git status`.
-3. Identify PR meta (author + head branch):
-
-   ```sh
-   gh pr view <PR> --json number,title,author,headRefName,baseRefName,headRepository --jq '{number,title,author:.author.login,head:.headRefName,base:.baseRefName,headRepo:.headRepository.nameWithOwner}'
-   contrib=$(gh pr view <PR> --json author --jq .author.login)
-   head=$(gh pr view <PR> --json headRefName --jq .headRefName)
-   head_repo_url=$(gh pr view <PR> --json headRepository --jq .headRepository.url)
-   ```
-
-4. Fast-forward base:
-   - `git checkout main`
-   - `git pull --ff-only`
-5. Create temp base branch from main:
-   - `git checkout -b temp/landpr-<ts-or-pr>`
-6. Check out PR branch locally:
-   - `gh pr checkout <PR>`
-7. Rebase PR branch onto temp base:
-   - `git rebase temp/landpr-<ts-or-pr>`
-   - Fix conflicts; keep history tidy.
-8. Fix + tests + changelog:
-   - Implement fixes + add/adjust tests
-   - Update `CHANGELOG.md` and mention `#<PR>` + `@$contrib`
-9. Decide merge strategy:
-   - Squash (preferred): use when we want a single clean commit
-   - Rebase: use only when we explicitly want to preserve commit history
-   - If unclear, ask
-10. Full gate (BEFORE commit):
-    - `pnpm lint && pnpm build && pnpm test`
-11. Commit via committer (final merge commit only includes PR # + thanks):
-    - For the final merge-ready commit: `committer "fix: <summary> (#<PR>) (thanks @$contrib)" CHANGELOG.md <changed files>`
-    - If you need intermediate fix commits before the final merge commit, keep those messages concise and **omit** PR number/thanks.
-    - `land_sha=$(git rev-parse HEAD)`
-12. Push updated PR branch (rebase => usually needs force):
-
-    ```sh
-    git remote add prhead "$head_repo_url.git" 2>/dev/null || git remote set-url prhead "$head_repo_url.git"
-    git push --force-with-lease prhead HEAD:$head
-    ```
-
-13. Merge PR (must show MERGED on GitHub):
-    - Squash (preferred): `gh pr merge <PR> --squash`
-    - Rebase (history-preserving fallback): `gh pr merge <PR> --rebase`
-    - Never `gh pr close` (closing is wrong)
-14. Sync main:
-    - `git checkout main`
-    - `git pull --ff-only`
-15. Comment on PR with what we did + SHAs + thanks:
-
-    ```sh
-    merge_sha=$(gh pr view <PR> --json mergeCommit --jq '.mergeCommit.oid')
-    gh pr comment <PR> --body "Landed via temp rebase onto main.\n\n- Gate: pnpm lint && pnpm build && pnpm test\n- Land commit: $land_sha\n- Merge commit: $merge_sha\n\nThanks @$contrib!"
-    ```
-
-16. Verify PR state == MERGED:
-    - `gh pr view <PR> --json state --jq .state`
-17. Delete temp branch:
-    - `git branch -D temp/landpr-<ts-or-pr>`
+1. Establish which actions the user authorized for that exact PR. A request to prepare/audit landing is not a merge request. When landing is explicitly authorized, continue through the approved steps without asking again; author-branch rewriting, unrelated metadata changes and cleanup are not implicit prerequisites.
+2. Read `.agents/reference/github-workflow.md`, the root/nested AGENTS and the current maintainer workflow routed by `.agents/maintainers.md`. Run the applicable review workflow first. Do not invent an inaccessible runbook.
+3. Bind the PR's current head/base SHAs and actual diff. Verify bug claims with symptom/root-cause evidence and relevant regression proof. Check draft state, required reviews, required CI and mergeability for that head. A change of head invalidates older head-specific checks.
+4. Preserve all existing staged/unstaged/untracked work. Do not switch branches, create stashes or force-push the author's branch to manufacture a clean checkout. Use an already-authorized isolated candidate if fixes are needed; otherwise report the exact preparation action needed. Make only requested fixes and run the applicable pinned checks before an authorized scoped commit.
+5. Re-read the remote PR state immediately before the authorized merge. Prefer squash unless the user's/maintainer's history requirement calls for rebase. If evidence or required checks fail, stop at HOLD; never bypass branch protection or close the PR as a substitute for merging.
+6. Verify GitHub state is MERGED and record the head/merge commit URLs. If merge status is uncertain, query before retrying. Report the result and exact validation. Post a landing comment, sync another checkout or delete temporary branches only if those actions are included in the authorization; use file-backed multiline comment bodies.

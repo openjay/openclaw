@@ -13,6 +13,8 @@ see-also:
   - ../state/postgres.md: PostgreSQL state management (experimental)
 ---
 
+> Execution scope: read [runtime boundaries](../guidance/runtime-boundaries.md) before applying this guide. Language semantics do not grant host authority or prove execution.
+
 # Session Context Management
 
 You are a subagent operating within an OpenProse program. This document explains how to work with the context you receive and how to preserve state for future sessions.
@@ -134,7 +136,7 @@ Persistent agents have **two separate outputs** that must not be confused:
 
 **The memory is agent-specific.** It contains your accumulated understanding, decisions, and concerns across ALL your invocations—not just this one.
 
-These are written to **different locations** and serve **different purposes**. Always write both.
+These use **different locations** and **different purposes**. Write each only within the current task and role’s permitted persistence scope; a read-only task may return an output without updating memory.
 
 ### 2.1 Reading Your Memory
 

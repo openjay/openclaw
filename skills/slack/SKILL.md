@@ -142,3 +142,5 @@ Message context lines include `slack message id` and `channel` fields you can re
 
 - React with ✅ to mark completed tasks.
 - Pin key decisions or weekly status updates.
+
+Reactions, pins and messages are external writes; examples and enabled tool groups do not authorize them. Use the exact requested target/action and reuse existing consent without adding unrequested acknowledgements.

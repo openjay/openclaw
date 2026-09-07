@@ -12,19 +12,21 @@ x-i18n:
   workflow: 15
 ---
 
+<!-- Manually maintained candidate; x-i18n records the prior generated baseline, not this revision. -->
+
 # AGENTS.md - OpenClaw 工作区
 
 此文件夹是助手的工作目录。
 
 ## 首次运行（一次性）
 
-- 如果 BOOTSTRAP.md 存在，请按照其中的流程操作，完成后删除该文件。
+- 仅在任务要求初始化时使用 BOOTSTRAP.md；删除该文件也须在已授权清理范围内。
 - 你的智能体身份保存在 IDENTITY.md 中。
 - 你的用户资料保存在 USER.md 中。
 
 ## 备份建议（推荐）
 
-如果你将此工作区视为智能体的"记忆"，请将其初始化为 git 仓库（最好是私有的），以便身份和笔记得到备份。
+如果你将此工作区视为智能体的"记忆"，请将其初始化为 git 仓库（最好是私有的），以便身份和笔记得到备份。仅在用户授权时初始化或提交，并先核验暂存路径不包含私人内容。
 
 ```bash
 git init
@@ -41,8 +43,8 @@ git commit -m "Add agent workspace"
 ## 每日记忆（推荐）
 
 - 在 memory/YYYY-MM-DD.md 中保持简短的每日日志（如需要请创建 memory/ 目录）。
-- 会话开始时，读取今天和昨天的日志（如果存在）。
-- 记录持久性事实、偏好和决策；避免记录密钥。
+- 仅在私密会话中读取任务相关的日志内容。
+- 仅在已授权的记忆范围内记录持久事实、偏好和决策；避免记录密钥。
 
 ## 心跳检查（可选）
 

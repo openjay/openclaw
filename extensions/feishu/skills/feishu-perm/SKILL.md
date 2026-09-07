@@ -1,7 +1,6 @@
 ---
 name: feishu-perm
-description: |
-  Feishu permission management for documents and files. Activate when user mentions sharing, permissions, collaborators.
+description: "Inspect or change explicitly requested Feishu/Lark document collaborators and permissions through the configured feishu_perm tool."
 ---
 
 # Feishu Permission Tool
@@ -112,7 +111,7 @@ channels:
       perm: true # default: false (disabled)
 ```
 
-**Note:** This tool is disabled by default because permission management is a sensitive operation. Enable explicitly if needed.
+**Note:** This tool is disabled by default because permission management is a sensitive operation. Do not enable it as a prerequisite to a read-only request. A configuration change requires its own explicit scope; sharing permission must match the exact target/member/level requested.
 
 ## Permissions
 

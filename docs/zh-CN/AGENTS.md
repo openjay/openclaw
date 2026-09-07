@@ -32,8 +32,8 @@ go run scripts/docs-i18n/main.go -mode segment docs/channels/matrix.md
 
 - doc 模式用于整页翻译；segment 模式用于小范围修补（依赖 TM）。
 - 新增技术术语、页面标题或短导航标签时，先更新 `docs/.i18n/glossary.zh-CN.json`，再跑 `doc` 模式；不要指望模型自行保留英文术语或固定译名。
-- `pnpm docs:check-i18n-glossary` 会检查变更过的英文文档标题和短内部链接标签是否已写入 glossary。
-- 超大文件若超时，优先做**定点替换**或拆分后再跑。
+- 先检查当前 `package.json` 是否提供 `pnpm docs:check-i18n-glossary`；存在时它会检查变更过的英文文档标题和短内部链接标签是否已写入 glossary。
+- 超大文件若超时，保留已完成输出并定位失败范围；仅在用户已授权编辑生成文档时做定点修复，不绕过翻译或验证流程。
 - 翻译后检查中文引号、CJK-Latin 间距和术语一致性。
 
 ## zh-CN 样式规则

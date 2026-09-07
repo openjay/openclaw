@@ -11,14 +11,14 @@ This folder is the assistant's working directory.
 
 ## First run (one-time)
 
-- If BOOTSTRAP.md exists, follow its ritual and delete it once complete.
+- Use BOOTSTRAP.md only for requested setup; remove it only within authorized cleanup.
 - Your agent identity lives in IDENTITY.md.
 - Your profile lives in USER.md.
 
 ## Backup tip (recommended)
 
 If you treat this workspace as the agent's "memory", make it a git repo (ideally private) so identity
-and notes are backed up.
+and notes are backed up. Initialize or commit only when the user authorizes that action; inspect the staged paths for private content first.
 
 ```bash
 git init
@@ -35,8 +35,8 @@ git commit -m "Add agent workspace"
 ## Daily memory (recommended)
 
 - Keep a short daily log at memory/YYYY-MM-DD.md (create memory/ if needed).
-- On session start, read today + yesterday if present.
-- Capture durable facts, preferences, and decisions; avoid secrets.
+- Read only the relevant daily context in a private session.
+- Persist durable facts, preferences and decisions only within authorized memory scope; avoid secrets.
 
 ## Heartbeats (optional)
 

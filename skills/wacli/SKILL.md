@@ -38,7 +38,7 @@ If the user is chatting with you on WhatsApp, you should not reach for this tool
 Safety
 
 - Require explicit recipient + message text.
-- Confirm recipient + message before sending.
+- Verify recipient + message against existing authorization; ask only for missing material details.
 - If anything is ambiguous, ask a clarifying question.
 
 Auth + sync

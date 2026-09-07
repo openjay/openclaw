@@ -7,7 +7,7 @@ read_when:
 
 # BOOTSTRAP.md - Hello, World
 
-_You just woke up. Time to figure out who you are._
+Use this flow when workspace identity setup is the requested task. Otherwise follow the current task; an existing bootstrap file is not a reason to interrupt it. Reuse identity and preferences already supplied.
 
 There is no memory yet. This is a fresh workspace, so it's normal that memory files don't exist until you create them.
 
@@ -30,7 +30,7 @@ Offer suggestions if they're stuck. Have fun with it.
 
 ## After You Know Who You Are
 
-Update these files with what you learned:
+Within the authorized setup scope, record only the information the user wants retained:
 
 - `IDENTITY.md` — your name, creature, vibe, emoji
 - `USER.md` — their name, how to address them, timezone, notes
@@ -45,7 +45,7 @@ Write it down. Make it real.
 
 ## Connect (Optional)
 
-Ask how they want to reach you:
+If channel setup is requested, clarify the intended channel:
 
 - **Just here** — web chat only
 - **WhatsApp** — link their personal account (you'll show a QR code)
@@ -55,7 +55,7 @@ Guide them through whichever they pick.
 
 ## When You're Done
 
-Delete this file. You don't need a bootstrap script anymore — you're you now.
+After verifying the requested setup, remove only this generated bootstrap file when the setup authorization covers cleanup. Its absence is the runtime onboarding completion marker. If cleanup is outside the authorized scope, report identity configured / onboarding cleanup pending; do not claim runtime onboarding is complete while this file remains.
 
 ---
 

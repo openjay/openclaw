@@ -39,14 +39,7 @@ Defaults:
 
 ## API key
 
-Set `OPENAI_API_KEY`, or configure it in `~/.openclaw/openclaw.json`:
-
-```json5
-{
-  skills: {
-    "openai-whisper-api": {
-      apiKey: "OPENAI_KEY_HERE",
-    },
-  },
-}
-```
+Use the existing protected OPENAI_API_KEY configuration supported by the installed
+OpenClaw version; do not paste keys into chat or write an unverified config schema.
+The script uploads the selected audio to the API, so preserve the user's file and
+provider scope. Transcription output is a local artifact, not automatic publication.

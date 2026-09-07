@@ -1,64 +1,12 @@
-# OpenClaw Codebase Patterns
+---
+applyTo: "**/*.ts,**/*.tsx"
+---
 
-**Always reuse existing code - no redundancy!**
+# OpenClaw TypeScript patterns
 
-## Tech Stack
+Follow the root and applicable nested AGENTS for authority, module boundaries and verification. Read `.agents/reference/development.md` when the task needs implementation or test detail.
 
-- **Runtime**: Node 22+ (Bun also supported for dev/scripts)
-- **Language**: TypeScript (ESM, strict mode)
-- **Package Manager**: pnpm (keep `pnpm-lock.yaml` in sync)
-- **Lint/Format**: Oxlint, Oxfmt (`pnpm check`)
-- **Tests**: Vitest with V8 coverage
-- **CLI Framework**: Commander + clack/prompts
-- **Build**: tsdown (outputs to `dist/`)
-
-## Anti-Redundancy Rules
-
-- Avoid files that just re-export from another file. Import directly from the original source.
-- If a function already exists, import it - do NOT create a duplicate in another file.
-- Before creating any formatter, utility, or helper, search for existing implementations first.
-
-## Source of Truth Locations
-
-### Formatting Utilities (`src/infra/`)
-
-- **Time formatting**: `src\infra\format-time`
-
-**NEVER create local `formatAge`, `formatDuration`, `formatElapsedTime` functions - import from centralized modules.**
-
-### Terminal Output (`src/terminal/`)
-
-- Tables: `src/terminal/table.ts` (`renderTable`)
-- Themes/colors: `src/terminal/theme.ts` (`theme.success`, `theme.muted`, etc.)
-- Progress: `src/cli/progress.ts` (spinners, progress bars)
-
-### CLI Patterns
-
-- CLI option wiring: `src/cli/`
-- Commands: `src/commands/`
-- Dependency injection via `createDefaultDeps`
-
-## Import Conventions
-
-- Use `.js` extension for cross-package imports (ESM)
-- Direct imports only - no re-export wrapper files
-- Types: `import type { X }` for type-only imports
-
-## Code Quality
-
-- TypeScript (ESM), strict typing, avoid `any`
-- Keep files under ~700 LOC - extract helpers when larger
-- Colocated tests: `*.test.ts` next to source files
-- Run `pnpm check` before commits (lint + format)
-- Run `pnpm tsgo` for type checking
-
-## Stack & Commands
-
-- **Package manager**: pnpm (`pnpm install`)
-- **Dev**: `pnpm openclaw ...` or `pnpm dev`
-- **Type-check**: `pnpm tsgo`
-- **Lint/format**: `pnpm check`
-- **Tests**: `pnpm test`
-- **Build**: `pnpm build`
-
-If you are coding together with a human, do NOT use scripts/committer, but git directly and run the above commands manually to ensure quality.
+- Reuse the existing implementation when it matches the required semantics. Search before adding a formatter/helper; use `src/infra/format-time.ts` for supported time formats rather than duplicating them.
+- Use TypeScript ESM with `.js` import specifiers and `import type` for type-only imports. Prefer direct imports; a dedicated `*.runtime.ts` re-export boundary is valid for lazy loading, and public SDK boundaries may require re-exports.
+- Terminal tables use `src/terminal/table.ts`; progress uses `src/cli/progress.ts`; colors use the applicable shared theme/palette. CLI wiring lives in `src/cli`, commands in `src/commands`, dependencies use `createDefaultDeps`.
+- Use the pinned package manager and scripts from `package.json`. Run focused tests via `pnpm test -- <path-or-filter>` and relevant type/lint/build checks. Before an authorized commit, use `scripts/committer` with only the owned paths; pairing with a human does not change staging ownership.

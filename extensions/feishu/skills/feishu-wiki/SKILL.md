@@ -1,7 +1,6 @@
 ---
 name: feishu-wiki
-description: |
-  Feishu knowledge base navigation. Activate when user mentions knowledge base, wiki, or wiki links.
+description: "Navigate or edit explicitly referenced Feishu/Lark wiki spaces and nodes; generic wiki requests do not select this provider."
 ---
 
 # Feishu Wiki Tool
@@ -92,7 +91,7 @@ To edit a wiki page:
 
 1. Get node: `{ "action": "get", "token": "wiki_token" }` → returns `obj_token`
 2. Read doc: `feishu_doc { "action": "read", "doc_token": "obj_token" }`
-3. Write doc: `feishu_doc { "action": "write", "doc_token": "obj_token", "content": "..." }`
+3. Use the narrow authorized feishu_doc block edit or append. action=write replaces the document and is appropriate only for an explicitly scoped full replacement.
 
 ## Configuration
 

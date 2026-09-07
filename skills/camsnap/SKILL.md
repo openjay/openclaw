@@ -43,3 +43,5 @@ Notes
 
 - Requires `ffmpeg` on PATH.
 - Prefer a short test capture before longer clips.
+
+Capture only the requested camera/duration. Discovery, continuous watch actions and camera configuration are separate scopes. Never put real camera passwords in CLI arguments/output.

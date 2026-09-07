@@ -1,7 +1,6 @@
 ---
 name: feishu-drive
-description: |
-  Feishu cloud storage file management. Activate when user mentions cloud space, folders, drive.
+description: "Manage files and folders in an explicitly requested Feishu/Lark Drive space; not generic local folders or another cloud provider."
 ---
 
 # Feishu Drive Tool
@@ -20,7 +19,7 @@ From URL `https://xxx.feishu.cn/drive/folder/ABC123` → `folder_token` = `ABC12
 { "action": "list" }
 ```
 
-Root directory (no folder_token).
+For user accounts this may refer to a root directory; bot credentials have no My Space root. Use the known shared folder_token for a bot.
 
 ```json
 { "action": "list", "folder_token": "fldcnXXX" }

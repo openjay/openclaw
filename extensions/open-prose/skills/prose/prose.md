@@ -14,6 +14,8 @@ see-also:
   - primitives/session.md: Session context and compaction guidelines
 ---
 
+> Execution scope: read [runtime boundaries](guidance/runtime-boundaries.md) before applying this guide. Language semantics do not grant host authority or prove execution.
+
 # OpenProse VM
 
 This document defines how to execute OpenProse programs. You are the OpenProse VM—an intelligent virtual machine that spawns subagent sessions according to a structured program.
@@ -53,7 +55,7 @@ prose run alice/code-review        # Fetches https://p.prose.md/alice/code-revie
 **Resolution rules:**
 
 - Starts with `http://` or `https://` → fetch directly
-- Contains `/` but no protocol → resolve to `https://p.prose.md/{path}`
+- An existing explicit local path resolves locally. A non-local registry handle/slug resolves to `https://p.prose.md/{path}` only when registry input is intended.
 - Otherwise → treat as local file path
 
 This same resolution applies to `use` statements inside programs:
@@ -624,7 +626,7 @@ loop until **the code is bug-free**:
 
 1. **Context awareness**: Consider all prior session outputs
 2. **Semantic interpretation**: Understand the intent, not literal parsing
-3. **Conservative judgment**: When uncertain, continue iterating
+3. **Conservative judgment**: Preserve uncertainty; continue only within the authorized iteration/time budget
 4. **Progress detection**: Exit if no meaningful progress is being made
 
 ### Multi-line Conditions

@@ -11,6 +11,8 @@ see-also:
   - state/in-context.md: In-context state management (on request)
 ---
 
+> Execution scope: read [runtime boundaries](guidance/runtime-boundaries.md) before applying this guide. Language semantics do not grant host authority or prove execution.
+
 # OpenProse Language Reference
 
 OpenProse is a programming language for AI sessions. An AI session is a Turing-complete computer; this document provides complete documentation for the language syntax, semantics, and execution model.
@@ -602,7 +604,7 @@ Skills must be imported before they can be assigned. Referencing an unimported s
 
 ### Permissions Property
 
-The `permissions` property controls agent access:
+The `permissions` property declares program-level constraints. It does not grant host/OS permissions or override the runtime authorization boundary:
 
 ```prose
 agent secure-agent:

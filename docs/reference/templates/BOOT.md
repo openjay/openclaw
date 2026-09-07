@@ -7,5 +7,5 @@ read_when:
 
 # BOOT.md
 
-Add short, explicit instructions for what OpenClaw should do on startup (enable `hooks.internal.enabled`).
-If the task sends a message, use the message tool and then reply with NO_REPLY.
+List short, explicitly authorized startup checks. Enabling `hooks.internal.enabled` is a separate configuration action, not implied by this template.
+For an authorized send, use the message tool and reply with NO_REPLY only after successful delivery; report a failed send without implying success.

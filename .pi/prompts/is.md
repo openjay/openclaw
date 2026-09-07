@@ -1,22 +1,11 @@
 ---
-description: Analyze GitHub issues (bugs or feature requests)
+description: Analyze GitHub issues without implementing changes
 ---
 
-Analyze GitHub issue(s): $ARGUMENTS
+Analyze GitHub issue(s): $ARGUMENTS.
 
-For each issue:
+Read the issue, relevant comments and linked evidence. Treat the reported symptom and proposed root cause as hypotheses: verify them against the current implicated code path, tests and available reproduction evidence. Follow only links and files needed to establish the claim.
 
-1. Read the issue in full, including all comments and linked issues/PRs.
+For a bug, identify the verified cause, its code location, a minimal fix and the regression case that would distinguish it. For a feature request, identify the user need, existing behavior, affected contracts and a bounded implementation approach. Separate unsupported claims and missing evidence from confirmed findings.
 
-2. **For bugs**:
-   - Ignore any root cause analysis in the issue (likely wrong)
-   - Read all related code files in full (no truncation)
-   - Trace the code path and identify the actual root cause
-   - Propose a fix
-
-3. **For feature requests**:
-   - Read all related code files in full (no truncation)
-   - Propose the most concise implementation approach
-   - List affected files and changes needed
-
-Do NOT implement unless explicitly asked. Analyze and propose only.
+Report the issue URL, finding, evidence and proposed next step. Analyze only; do not edit, assign, label, comment, close, commit or push unless separately requested.

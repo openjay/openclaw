@@ -11,7 +11,9 @@ x-i18n:
   workflow: 15
 ---
 
+<!-- Manually maintained candidate; x-i18n records the prior generated baseline, not this revision. -->
+
 # BOOT.md
 
-添加简短、明确的指令，说明 OpenClaw 在启动时应执行的操作（启用 `hooks.internal.enabled`）。
-如果任务需要发送消息，请使用消息工具，然后回复 NO_REPLY。
+列出已明确授权的简短启动检查。启用 `hooks.internal.enabled` 是单独的配置动作，本模板不授予该权限。
+已授权发送时使用消息工具；仅在投递成功后回复 NO_REPLY。失败须如实报告，不把失败表述为已送达。

@@ -101,7 +101,7 @@ imsg send --to "+14155551212" --text "Hi" --service sms
 
 ## Safety Rules
 
-1. **Always confirm recipient and message content** before sending
+1. **Verify recipient and content match the authorized request** before sending; ask only for material details not already supplied
 2. **Never send to unknown numbers** without explicit user approval
 3. **Be careful with attachments** — confirm file path exists
 4. **Rate limit yourself** — don't spam
@@ -114,9 +114,9 @@ User: "Text mom that I'll be late"
 # 1. Find mom's chat
 imsg chats --limit 20 --json | jq '.[] | select(.displayName | contains("Mom"))'
 
-# 2. Confirm with user
-# "Found Mom at +1555123456. Send 'I'll be late' via iMessage?"
+# 2. Resolve ambiguity only if the contact or text is not already established.
+# Existing explicit recipient/content authorization is sufficient.
 
-# 3. Send after confirmation
+# 3. Send only the resolved, authorized recipient/content
 imsg send --to "+1555123456" --text "I'll be late"
 ```
